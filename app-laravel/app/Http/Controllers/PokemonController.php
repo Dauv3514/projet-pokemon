@@ -37,7 +37,7 @@ class PokemonController extends Controller
      */
     public function show(Pokemon $pokemon)
     {
-        //
+        return view('show', compact('pokemon'));
     }
 
     /**

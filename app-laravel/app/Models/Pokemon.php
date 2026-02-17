@@ -9,4 +9,6 @@ class Pokemon extends Model
 {
     /** @use HasFactory<\Database\Factories\PokemonFactory> */
     use HasFactory;
+
+    protected $table = 'pokemons';
 }
