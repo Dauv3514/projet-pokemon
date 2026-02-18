@@ -19,7 +19,10 @@
         </h2>
 
         <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: #555; margin-bottom: 16px; text-align: center;">
-            <li><strong>Type :</strong> {{ $pokemon->type->name ?? 'Inconnu' }}</li>
+            <li>
+                <strong>Type(s) :</strong>
+                {{ $pokemon->types->pluck('name')->map(fn($t) => ucfirst($t))->join(', ') ?: 'Inconnu' }}
+            </li>
             <li><strong>HP:</strong> {{ $pokemon->hp }}</li>
             <li><strong>Atk:</strong> {{ $pokemon->attack }}</li>
             <li><strong>Def:</strong> {{ $pokemon->defense }}</li>

@@ -3,28 +3,26 @@
 namespace Database\Seeders;
 
 use App\Models\Pokemon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Type;
 use Illuminate\Database\Seeder;
 
 class PokemonSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-public function run(): void
-{
-    // Chemin vers le fichier JSON
-    $jsonPath = database_path('seeders/pokemons.json');
+    public function run(): void
+    {
+        // chemin vers le JSON
+        $jsonPath = database_path('seeders/pokemons.json');
 
-    // Lire le JSON
-    $json = file_get_contents($jsonPath);
+        // lire le fichier
+        $json = file_get_contents($jsonPath);
 
-    // Décoder en tableau PHP
-    $pokemons = json_decode($json, true);
+        // convertir en tableau PHP
+        $pokemons = json_decode($json, true);
 
-    // Boucler sur chaque Pokémon et créer l'enregistrement
         foreach ($pokemons as $p) {
-            Pokemon::create([
+
+            // 1️⃣ créer le pokemon
+            $pokemon = Pokemon::create([
                 'name' => $p['name'],
                 'hp' => $p['hp'],
                 'attack' => $p['attack'],
@@ -37,6 +35,23 @@ public function run(): void
                 'generation' => $p['generation'],
                 'is_legendary' => $p['is_legendary'],
             ]);
+
+            // 2️⃣ récupérer les types
+            $types = array_filter([
+                $p['type1'] ?? null,
+                $p['type2'] ?? null
+            ]);
+
+            foreach ($types as $typeName) {
+
+                // 3️⃣ créer le type si absent
+                $type = Type::firstOrCreate([
+                    'name' => strtolower($typeName)
+                ]);
+
+                // 4️⃣ attacher au pokemon
+                $pokemon->types()->attach($type->id);
+            }
         }
     }
 }

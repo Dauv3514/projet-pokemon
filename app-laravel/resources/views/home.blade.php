@@ -7,6 +7,19 @@
         Liste des Pokémons
     </h1>
 
+    <div class="text-center mb-6 mt-6">
+        <form method="GET" action="{{ route('home') }}" class="inline-flex items-center" id="filterForm">
+            <select name="type" class="border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" onchange="document.getElementById('filterForm').submit()">
+                <option value="">Tous les types</option>
+                @foreach($types as $type)
+                    <option value="{{ $type->id }}" {{ request('type') == $type->id ? 'selected' : '' }}>
+                        {{ ucfirst($type->name) }}
+                    </option>
+                @endforeach
+            </select>
+        </form>
+    </div>
+
     <!-- @auth
     {{-- Bouton Ajouter Pokémon --}}
     <div class="text-center mb-6">
@@ -18,7 +31,7 @@
     </div>
     @endauth -->
 
-    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 10px;">
 
         @foreach($pokemons as $pokemon)
             <div style="display: flex; flex-direction: column; gap: 12px;">
