@@ -30,4 +30,12 @@ class Pokemon extends Model
     {
         return $this->belongsToMany(Type::class, 'pokemon_type');
     }
+
+    // Relation avec les decks
+    public function decks()
+    {
+        return $this->belongsToMany(Deck::class, 'deck_has_pokemon')
+                    ->withPivot('quantity')
+                    ->withTimestamps();
+    }
 }

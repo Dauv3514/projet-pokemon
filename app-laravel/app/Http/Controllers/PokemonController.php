@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePokemonRequest;
 use App\Http\Requests\UpdatePokemonRequest;
 use App\Models\Pokemon;
+use App\Models\Deck;
 
 class PokemonController extends Controller
 {
@@ -37,7 +38,11 @@ class PokemonController extends Controller
      */
     public function show(Pokemon $pokemon)
     {
-        return view('show', compact('pokemon'));
+        $decks = auth()->check()
+            ? Deck::where('user_id', auth()->id())->get()
+            : collect();
+
+        return view('show', compact('pokemon', 'decks'));
     }
 
     /**

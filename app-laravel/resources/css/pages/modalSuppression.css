@@ -1,0 +1,49 @@
+.modal-danger h2 {
+    color: black;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modal-danger p {
+    text-align: center;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.modal-danger strong {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.modal-danger::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: #eee;
+    margin: 15px 0;
+}
+
+.btn-danger {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #dc2626;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.btn-danger:active {
+    transform: translateY(0);
+}

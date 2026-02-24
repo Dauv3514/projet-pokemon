@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 py-6">
 
-    <h1 class="text-3xl font-bold mb-8 text-center">
+<div class="page-container">
+
+    <h1 class="page-title">
         Liste des Pokémons
     </h1>
 
-    <div class="text-center mb-6 mt-6">
-        <form method="GET" action="{{ route('home') }}" class="inline-flex items-center" id="filterForm">
-            <select name="type" class="border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" onchange="document.getElementById('filterForm').submit()">
+    <div class="filters">
+
+        <form method="GET" action="{{ route('home') }}" id="filterForm">
+            <select name="type" onchange="document.getElementById('filterForm').submit()">
                 <option value="">Tous les types</option>
                 @foreach($types as $type)
                     <option value="{{ $type->id }}" {{ request('type') == $type->id ? 'selected' : '' }}>
@@ -18,42 +20,44 @@
                 @endforeach
             </select>
         </form>
+
+        @auth
+        <div style="margin-top:15px; display:flex; gap:12px; justify-content:center;">
+            
+            <a href="{{ route('decks.create') }}" class="btn-primary">
+                Créer un deck
+            </a>
+
+            <a href="{{ route('decks.index') }}" class="btn-primary">
+                Voir mes decks
+            </a>
+
+        </div>
+        @endauth
+
     </div>
 
-    <!-- @auth
-    {{-- Bouton Ajouter Pokémon --}}
-    <div class="text-center mb-6">
-        <button
-            type="button"
-            style="padding: 4px 8px; background-color: #3b82f6; color: #fff; border-radius: 4px; font-size: 12px; border: none; cursor: pointer;">
-            Ajouter un Pokémon
-        </button>
-    </div>
-    @endauth -->
-
-    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 10px;">
+    <div class="pokemon-grid">
 
         @foreach($pokemons as $pokemon)
-            <div style="display: flex; flex-direction: column; gap: 12px;">
 
-                {{-- Carte cliquable (image + infos) --}}
-                <a href="{{ route('pokemons.show', $pokemon) }}" style="text-decoration: none; color: inherit;">
-                    <div style="background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 12px; width: 220px; cursor: pointer; display: flex; flex-direction: column; gap: 12px;">
+            <div class="pokemon-card-wrapper">
 
-                        {{-- Image --}}
+                <a href="{{ route('pokemons.show', $pokemon) }}" style="text-decoration:none; color:inherit;">
+                    <div class="pokemon-card">
+
                         <img
                             src="{{ asset('images/' . strtolower($pokemon->name) . '.png') }}"
                             alt="{{ $pokemon->name }}"
-                            onerror="this.onerror=null;this.src='{{ asset('images/default.png') }}';"
-                            style="width: 100%; height: 100px; object-fit: contain;"
+                            onerror="this.src='{{ asset('images/default.png') }}';"
                         />
 
-                        {{-- Infos --}}
-                        <div style="text-align: center;">
-                            <h2 style="font-size: 14px; font-weight: bold; text-transform: capitalize; margin-bottom: 4px;">
+                        <div>
+                            <div class="pokemon-name">
                                 {{ $pokemon->name }}
-                            </h2>
-                            <ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #555;">
+                            </div>
+
+                            <ul class="pokemon-stats">
                                 <li>HP: {{ $pokemon->hp }}</li>
                                 <li>Atk: {{ $pokemon->attack }}</li>
                                 <li>Def: {{ $pokemon->defense }}</li>
@@ -64,29 +68,24 @@
                     </div>
                 </a>
 
-                {{-- CRUD simulé pour front --}}
                 @auth
-                <div style="display: flex; gap: 8px; justify-content: center; margin-top: 0;">
-                    <button
-                        type="button"
-                        onclick="alert('Modification simulée pour front');"
-                        style="padding: 4px 8px; background-color: #facc15; color: #000; border-radius: 4px; font-size: 12px; border: none; cursor: pointer;">
+                <div class="pokemon-actions">
+                    <button class="btn-edit" onclick="alert('Modification simulée');">
                         Modifier
                     </button>
 
-                    <button
-                        type="button"
-                        onclick="alert('Suppression simulée pour front');"
-                        style="padding: 4px 8px; background-color: #ef4444; color: #fff; border-radius: 4px; font-size: 12px; border: none; cursor: pointer;">
+                    <button class="btn-delete" onclick="alert('Suppression simulée');">
                         Supprimer
                     </button>
                 </div>
                 @endauth
 
             </div>
+
         @endforeach
 
     </div>
 
 </div>
+
 @endsection

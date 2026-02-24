@@ -1,0 +1,132 @@
+
+.decks-container {
+    padding: 40px 20px;
+}
+
+.deck-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.decks-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.decks-empty {
+    text-align: center;
+    color: #6b7280;
+}
+
+.decks-grid {
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+}
+
+.deck-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.deck-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.deck-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.deck-card > div {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-view {
+    padding: 6px 12px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-view:hover {
+    background: #2563eb;
+}
+
+.btn-rename {
+    padding: 6px 10px;
+    background: #facc15;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    padding: 6px 12px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.rename-input {
+    border: 1px solid #ddd;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.rename-form {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+@media (max-width: 480px) {
+
+    .decks-container {
+        padding: 20px 10px;
+    }
+
+    .decks-title {
+        font-size: 22px;
+    }
+
+    .deck-card {
+        padding: 15px;
+    }
+
+    .deck-card > div {
+        flex-direction: column;
+    }
+
+    .btn-view,
+    .btn-rename,
+    .btn-delete {
+        width: 100%;
+        text-align: center;
+    }
+
+    .rename-input {
+        width: 100%;
+    }
+}

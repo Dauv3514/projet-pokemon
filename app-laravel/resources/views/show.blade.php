@@ -1,24 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 py-6 flex justify-center items-center min-h-screen">
 
-    <div style="background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 24px; text-align: center;">
+<div class="pokemon-show-container">
 
-        {{-- Image Pokémon --}}
+    <div class="pokemon-show-card">
+
+        {{-- Image --}}
         <img
             src="{{ asset('images/' . strtolower($pokemon->name) . '.png') }}"
             alt="{{ $pokemon->name }}"
-            onerror="this.onerror=null;this.src='{{ asset('images/default.png') }}';"
-            style="width: 150px; height: 150px; object-fit: contain; margin-bottom: 16px;"
+            onerror="this.src='{{ asset('images/default.png') }}';"
+            class="pokemon-show-img"
         />
 
-        {{-- Infos détaillées --}}
-        <h2 style="font-size: 20px; font-weight: bold; text-transform: capitalize; margin-bottom: 12px;">
+        {{-- Nom --}}
+        <h2 class="pokemon-show-name">
             {{ $pokemon->name }}
         </h2>
 
-        <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: #555; margin-bottom: 16px; text-align: center;">
+        {{-- Infos --}}
+        <ul class="pokemon-stats">
             <li>
                 <strong>Type(s) :</strong>
                 {{ $pokemon->types->pluck('name')->map(fn($t) => ucfirst($t))->join(', ') ?: 'Inconnu' }}
@@ -35,17 +37,51 @@
             <li><strong>Légendaire :</strong> {{ $pokemon->is_legendary ? 'Oui' : 'Non' }}</li>
         </ul>
 
-        {{-- Bouton Ajouter au deck --}}
+        {{-- Ajouter au deck --}}
         @auth
-        <button
-            type="button"
-            onclick="alert('Ajout au deck simulé pour le front');"
-            style="padding: 8px 16px; background-color: #10b981; color: white; border-radius: 6px; font-size: 14px; border: none; cursor: pointer;">
-            Ajouter au deck
-        </button>
+            <form method="POST"
+                  action="{{ route('decks.addPokemon', $decks->first()) }}"
+                  class="pokemon-form">
+
+                @csrf
+
+                <input type="hidden" name="pokemon_id" value="{{ $pokemon->id }}">
+
+                {{-- Deck --}}
+                <div style="margin-bottom:10px;">
+                    <label class="pokemon-label">Choisir un deck :</label>
+                    <select name="deck_id"
+                            required
+                            class="pokemon-select">
+                        @foreach($decks as $deck)
+                            <option value="{{ $deck->id }}">
+                                {{ $deck->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- Quantité --}}
+                <div style="margin-bottom:10px;">
+                    <label class="pokemon-label">Nombre :</label>
+                    <input type="number"
+                           name="quantity"
+                           value="1"
+                           min="1"
+                           max="15"
+                           class="pokemon-input">
+                </div>
+
+                {{-- Bouton bleu --}}
+                <button type="submit" class="btn-blue">
+                    Ajouter au deck
+                </button>
+
+            </form>
         @endauth
 
     </div>
 
 </div>
+
 @endsection
