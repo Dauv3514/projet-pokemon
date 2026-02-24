@@ -1,0 +1,148 @@
+.deck-container2 {
+    padding: 40px 20px;
+    min-height: 80vh;
+}
+
+.deck-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}
+
+.deck-add-section {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    transition: 0.2s;
+}
+
+.deck-add-section:hover {
+    transform: translateY(-3px);
+}
+
+.deck-select,
+.deck-input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.deck-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.deck-item {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.deck-item:hover {
+    transform: translateY(-3px);
+}
+
+.deck-pokemon-name {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.deck-content {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+.deck-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    flex: 1;
+    min-width: 350px;
+    max-width: 600px;
+    transition: 0.2s;
+}
+
+.deck-card:hover {
+    transform: translateY(-3px);
+}
+
+.deck-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.deck-card-header h2 {
+    margin: 0;
+}
+
+.btns-container {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-green {
+    padding: 8px 14px;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-green:hover {
+    background-color: #16a34a;
+    transform: translateY(-2px);
+}
+
+.btn-red {
+    padding: 8px 14px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-red:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+}
+
+.btn-gray {
+    padding: 8px 14px;
+    background-color: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-gray:hover {
+    background-color: #4b5563;
+    transform: translateY(-2px);
+}

@@ -17,7 +17,6 @@ Route::get('/home/{pokemon}', [PokemonController::class, 'show'])->name('pokemon
 Route::post('/decks/add-pokemon', [DeckController::class, 'addPokemon'])
     ->name('decks.addPokemon')
     ->middleware('auth');
-
 Route::get('/decks/create', [DeckController::class, 'create'])
     ->name('decks.create')
     ->middleware('auth');
@@ -38,4 +37,16 @@ Route::middleware('auth')->group(function () {
 
      // Update un deck (renommer)
     Route::put('/decks/{deck}', [DeckController::class, 'update'])->name('decks.update');
-});
+
+    Route::post('/decks/{deck}/pokemons', [DeckController::class, 'storePokemon'])
+    ->name('decks.pokemons.store');
+
+    // Modifier quantité
+    Route::put('/decks/{deck}/pokemons/{pokemon}', [DeckController::class, 'updatePokemon'])
+        ->name('decks.pokemons.update');
+
+    // Supprimer du deck
+    Route::delete('/decks/{deck}/pokemons/{pokemon}', [DeckController::class, 'destroyPokemon'])
+        ->name('decks.pokemons.destroy');
+
+    });

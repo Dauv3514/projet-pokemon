@@ -67,19 +67,6 @@
 
                     </div>
                 </a>
-
-                @auth
-                <div class="pokemon-actions">
-                    <button class="btn-edit" onclick="alert('Modification simulée');">
-                        Modifier
-                    </button>
-
-                    <button class="btn-delete" onclick="alert('Suppression simulée');">
-                        Supprimer
-                    </button>
-                </div>
-                @endauth
-
             </div>
 
         @endforeach

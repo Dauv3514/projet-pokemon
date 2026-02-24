@@ -2,8 +2,10 @@
 @import './pages/home.css';
 @import './pages/decks.css';
 @import './pages/show.css';
+@import './pages/showDeck.css';
 @import './pages/navbar.css';
 @import './pages/modalRenommage.css';
+@import './pages/modalModifier.css';
 @import './pages/modalSuppression.css';
 
 /* Optionnel : thème perso */
