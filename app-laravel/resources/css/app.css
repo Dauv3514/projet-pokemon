@@ -7,6 +7,8 @@
 @import './pages/modalRenommage.css';
 @import './pages/modalModifier.css';
 @import './pages/modalSuppression.css';
+@import './pages/admin.css';
+@import './pages/adminPokemons.css';
 
 /* Optionnel : thème perso */
 :root {

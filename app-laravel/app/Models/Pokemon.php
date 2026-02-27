@@ -38,4 +38,9 @@ class Pokemon extends Model
                     ->withPivot('quantity')
                     ->withTimestamps();
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

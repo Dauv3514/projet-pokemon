@@ -1,0 +1,280 @@
+.pokemon-admin-wrapper {
+    padding: 40px 20px;
+}
+
+.pokemon-admin-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.pokemon-admin-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+
+.pokemon-admin-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-weight: 600;
+}
+
+.pokemon-admin-btn--primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.pokemon-admin-btn--primary:hover {
+    background: #2563eb;
+}
+
+.pokemon-admin-btn--edit {
+    background: #facc15;
+    color: black;
+}
+
+.pokemon-admin-btn--edit:hover {
+    background: #eab308;
+}
+
+.pokemon-admin-btn--delete {
+    background: #ef4444;
+    color: white;
+}
+
+.pokemon-admin-btn--delete:hover {
+    background: #dc2626;
+}
+
+.pokemon-admin-table-container {
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon-admin-table {
+    width: 50%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.pokemon-admin-table th,
+.pokemon-admin-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+.pokemon-admin-table thead {
+    background: #f3f4f6;
+}
+
+.pokemon-admin-table tbody tr {
+    border-top: 1px solid #eee;
+}
+
+.pokemon-admin-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.pokemon-admin-name {
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.pokemon-admin-image {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.pokemon-admin-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-admin-form {
+    display: inline;
+}
+
+
+@media (max-width: 600px) {
+
+    .pokemon-admin-actions {
+        flex-direction: column;
+    }
+
+    .pokemon-admin-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* POKEMON EDIT PAGE */
+
+.pokemon-edit-wrapper {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-edit-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.pokemon-edit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 450px;
+}
+
+.pokemon-edit-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.pokemon-edit-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.pokemon-edit-input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.pokemon-edit-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.pokemon-edit-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #3b82f6;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.pokemon-edit-btn:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.pokemon-edit-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+    .pokemon-edit-card {
+        padding: 20px;
+    }
+}
+
+/* POKEMON CREATE PAGE */
+
+.pokemon-create-wrapper {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-create-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.pokemon-create-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 450px;
+}
+
+.pokemon-create-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.pokemon-create-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.pokemon-create-input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.pokemon-create-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.pokemon-create-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #3b82f6;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.pokemon-create-btn:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.pokemon-create-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+    .pokemon-create-card {
+        padding: 20px;
+    }
+}

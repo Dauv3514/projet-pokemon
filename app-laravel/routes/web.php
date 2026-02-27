@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\DeckController;
-
+use App\Http\Controllers\TypeController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::resource('pokemon', PokemonController::class);
+// Route::resource('pokemon', PokemonController::class);
 Route::get('/home/{pokemon}', [PokemonController::class, 'show'])->name('pokemons.show');
 
 Route::post('/decks/add-pokemon', [DeckController::class, 'addPokemon'])
@@ -49,4 +49,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/decks/{deck}/pokemons/{pokemon}', [DeckController::class, 'destroyPokemon'])
         ->name('decks.pokemons.destroy');
 
-    });
+});
+
+Route::middleware('auth')
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+
+        Route::resource('types', TypeController::class);
+        Route::resource('pokemons', PokemonController::class); // 👈 SANS except
+});

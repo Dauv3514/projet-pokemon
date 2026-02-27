@@ -44,21 +44,27 @@
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="nav-button">Register</a>
                         @endif
-                    @else
+                        @else
 
-                        <div class="nav-user">
-                            {{ Auth::user()->name }}
-                        </div>
+                            @auth
+                                <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                                    Administration
+                                </a>
+                            @endauth
 
-                        <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                        class="nav-button-danger">
-                            Logout
-                        </a>
+                            <div class="nav-user">
+                                {{ Auth::user()->name }}
+                            </div>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
-                            @csrf
-                        </form>
+                            <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                            class="nav-button-danger">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+                                @csrf
+                            </form>
 
                     @endguest
 

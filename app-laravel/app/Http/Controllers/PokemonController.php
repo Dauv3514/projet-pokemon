@@ -5,37 +5,35 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePokemonRequest;
 use App\Http\Requests\UpdatePokemonRequest;
 use App\Models\Pokemon;
+use App\Models\Type;
 use App\Models\Deck;
+use Illuminate\Http\Request;
 
 class PokemonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $pokemons = Pokemon::with('type')->get();
+
+        return view('admin.pokemons.index', compact('pokemons'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $types = Type::all();
+
+        return view('admin.pokemons.create', compact('types'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StorePokemonRequest $request)
     {
-        //
+        Pokemon::create($request->validated());
+
+        return redirect()
+            ->route('admin.pokemons.index')
+            ->with('success', 'Pokémon créé avec succès.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Pokemon $pokemon)
     {
         $decks = auth()->check()
@@ -45,27 +43,28 @@ class PokemonController extends Controller
         return view('show', compact('pokemon', 'decks'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Pokemon $pokemon)
     {
-        //
+        $types = Type::all();
+
+        return view('admin.pokemons.edit', compact('pokemon', 'types'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdatePokemonRequest $request, Pokemon $pokemon)
     {
-        //
+        $pokemon->update($request->validated());
+
+        return redirect()
+            ->route('admin.pokemons.index')
+            ->with('success', 'Pokémon mis à jour.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Pokemon $pokemon)
     {
-        //
+        $pokemon->delete();
+
+        return redirect()
+            ->route('admin.pokemons.index')
+            ->with('success', 'Pokémon supprimé.');
     }
 }
