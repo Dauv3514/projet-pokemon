@@ -1,0 +1,350 @@
+.types-admin-wrapper {
+    padding: 40px 30px;
+}
+
+.types-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.types-admin-title {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.types-admin-create-btn {
+    background: #3b82f6;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.types-admin-create-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+.types-admin-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+
+/* TABLE */
+
+.types-admin-table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.types-admin-table-head {
+    display: flex;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #6b7280;
+}
+
+.types-admin-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.types-col-name {
+    flex: 1;
+}
+
+.types-col-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.types-btn-edit {
+    background: #facc15;
+    color: #111;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.types-btn-edit:hover {
+    background: #eab308;
+}
+
+.types-btn-delete {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.types-btn-delete:hover {
+    background: #dc2626;
+}
+
+.types-btn-delete:active {
+    transform: scale(0.96);
+}
+
+@media (max-width: 600px) {
+
+    .types-admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .types-admin-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .types-col-actions {
+        width: 100%;
+    }
+}
+
+.types-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.types-modal {
+    background: white;
+    padding: 28px;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    animation: modalAppear 0.2s ease;
+}
+
+@keyframes modalAppear {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.types-modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.types-modal-text {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.types-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.types-modal-cancel {
+    background: #e5e7eb;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.types-modal-confirm {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.types-modal-confirm:hover {
+    background: #dc2626;
+}
+
+.type-edit-wrapper {
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.type-edit-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.type-edit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 450px;
+}
+
+.type-edit-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.type-edit-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.type-edit-input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.type-edit-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.type-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.type-edit-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.type-edit-btn:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.type-edit-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+    .type-edit-card {
+        padding: 20px;
+    }
+}
+
+.type-create-wrapper {
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.type-create-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.type-create-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 450px;
+}
+
+.type-create-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.type-create-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.type-create-input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.type-create-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.type-create-actions {
+    display: flex;
+}
+
+.type-create-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #3b82f6;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.type-create-btn:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.type-create-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 500px) {
+    .type-create-card {
+        padding: 20px;
+    }
+}

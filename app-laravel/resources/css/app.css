@@ -9,6 +9,7 @@
 @import './pages/modalSuppression.css';
 @import './pages/admin.css';
 @import './pages/adminPokemons.css';
+@import './pages/adminTypes.css';
 
 /* Optionnel : thème perso */
 :root {

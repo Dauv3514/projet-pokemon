@@ -2,17 +2,33 @@
 
 @section('content')
 
-<div class="admin-container">
+<div class="type-create-wrapper">
 
-    <h1>Créer un Type</h1>
+    <h1 class="type-create-title">Créer un Type</h1>
 
-    <form action="{{ route('types.store') }}" method="POST">
-        @csrf
+    <div class="type-create-card">
 
-        <input type="text" name="name" required class="admin-input">
+        <form action="{{ route('admin.types.store') }}" method="POST">
+            @csrf
 
-        <button class="btn-save">Créer</button>
-    </form>
+            <div class="type-create-group">
+                <label class="type-create-label">Nom du type</label>
+
+                <input type="text"
+                       name="name"
+                       required
+                       class="type-create-input">
+            </div>
+
+            <div class="type-create-actions">
+                <button type="submit" class="type-create-btn">
+                    Créer
+                </button>
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
 
