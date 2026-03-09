@@ -31,6 +31,11 @@ class Pokemon extends Model
         return $this->belongsToMany(Type::class, 'pokemon_type');
     }
 
+    public function getImageAttribute()
+    {
+        return asset('images/' . strtolower($this->name) . '.png');
+    }
+       
     // Relation avec les decks
     public function decks()
     {

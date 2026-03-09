@@ -47,7 +47,7 @@
                     <div class="pokemon-card">
 
                         <img
-                            src="{{ asset('images/' . strtolower($pokemon->name) . '.png') }}"
+                            src="{{ $pokemon->image }}"
                             alt="{{ $pokemon->name }}"
                             onerror="this.src='{{ asset('images/default.png') }}';"
                         />
