@@ -1,76 +1,200 @@
-# Objectifs
+# Projet Pokémon Deck Manager (Laravel)
 
-Implémentez une application permettant de lister des pokemons, et de les ajouter au sein d'un deck (avec un nombre d'exemplaires).  
+Application web Laravel permettant de consulter un Pokédex, filtrer les Pokémon par type, et composer des decks personnels avec gestion des quantités.
 
-## Fonctionnalités attendues
+## Objectif du projet
 
-- Lister des pokemons
-- Gérer des decks de pokemons
-- Filtrer les pokemons par catégorie
-- Ajouter, modifier, supprimer des pokemons au sein d'un deck
-- Spécifier le nombre d'exemplaires d'un pokemon dans un deck
-- Gérer plusieurs decks
+Ce projet répond au sujet de cours Laravel:
 
-# Base de départ
+- authentification (inscription / connexion / déconnexion)
+- consultation d'un catalogue de Pokémon
+- filtrage par type
+- gestion de decks privés par utilisateur
+- CRUD d'administration (types + pokémons)
 
-Vous disposez de :
+## Fonctionnalités implémentées
 
-- `data/` : un dossier contenant des fichiers CSV alimentant une base de données de départ (Source: Kaggle)
+### Côté utilisateur
 
-# Consignes / Livraison
+- Voir la liste des Pokémon (`/` ou `/home`)
+- Filtrer les Pokémon par type
+- Voir la fiche détaillée d'un Pokémon
+- Créer un deck
+- Voir ses decks
+- Renommer / supprimer un deck
+- Ajouter un Pokémon à un deck avec une quantité
+- Modifier la quantité ou retirer un Pokémon d'un deck
 
-## Cas d'utilisation attendus
+### Côté authentification
 
-### 1. Deux types d'utilisateurs
+- Inscription
+- Connexion
+- Déconnexion
+- Routes Laravel UI (`Auth::routes()`)
 
-- Il existe un formulaire permettant de créer un compte utilisateur.  
-- Un utilisateur doit pouvoir se connecter et se déconnecter.
+### Côté administration
 
-### 2. Gestion des pokemons
+Accessible aux utilisateurs connectés via `/admin`:
 
-- Une liste de pokemons doit être fournie par les seeders de l'application.  
-- Tout utilisateur, connecté ou non, doit pouvoir :
-  - Lister tous les pokemons
-  - Filtrer les pokemons sur plusieurs critères, au moins par type  
-- En visualisant un pokemon, il doit être possible de le rajouter à un deck existant
+- CRUD des types
+- CRUD des pokémons
 
-### 3. Administration des pokemons
+## Stack technique
 
-- Un utilisateur connecté peut administrer les pokemons (CRUD)  
-- Un utilisateur connecté peut administrer les types de pokemons
+- PHP `^8.2`
+- Laravel `^12`
+- SQLite (par défaut)
+- Blade + Vite
+- Node.js / npm
+- Bootstrap / Sass / Vue (dépendances front installées)
 
-### 4. Gestion des decks
+## Prérequis
 
-- Seuls les utilisateurs connectés peuvent administrer des decks  
-- Les decks sont propres à chaque compte utilisateur (un deck ne peut être vu que par son propriétaire)  
-- En visualisant son deck, un utilisateur peut :
-  - Ajouter des pokemons
-  - Modifier des pokemons
-  - Supprimer des pokemons
+- PHP 8.2+
+- Composer
+- Node.js 18+ et npm
+- SQLite 3+
 
-# Contraintes
+## Installation
 
-- Projet à réaliser seul
-- Projet à réaliser en utilisant le framework Laravel
-- Livraison via un dépôt Git
-- Site responsive
-- Attention aux nommages de variables et méthodes
-- Attention aux nommages des routes (cohérence obligatoire)
-- Décomposition des composants cohérente
+Depuis la racine du dépôt:
 
-# Adaptation du sujet pour les B3 2025-2026
+```bash
+cd app-laravel
+```
 
-Certains peuvent utiliser un autre dataset. Dans tous les cas, vous aurez un modèle principal (ici, un pokemon). Les fonctionnalités attendues :
+### Option 1: installation rapide (recommandée)
 
-- Pouvoir lister tous les modèles (ex: le pokedex)
-- Filtrer les modèles (ex: pokemon de type Plante)
-- Voir un modèle en détail (ex: fiche d'un pokemon)
-- Créer un groupe de modèles (ex: faire un deck de pokemons)
-- Ajouter un modèle dans le groupe (avec données liées à l'association, ex: 3 Bulbizarre dans mon deck "BADASS")
-- Retirer un modèle du groupe (ex: retirer Dracaufeu du deck)
-- Supprimer un groupe (ex: supprimer le deck "BADASS")
-- Modifier un groupe (ex: renommer le deck "BADASS" en "OLD")
-- Ne pas pouvoir voir les groupes d'un autre utilisateur (ex: Nolan ne peut pas voir le deck "BADASS" d'un autre)
+```bash
+composer run setup
+php artisan db:seed
+php artisan db:seed --class=PokemonSeeder
+```
 
-> Une attention particulière est attendue pour le graphisme du site et la mise en valeur des informations.  
-> N'hésitez pas à utiliser des assets ou des frameworks CSS tels que **Bootstrap** ou **Tailwind**.
+### Option 2: installation manuelle
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate
+php artisan db:seed
+php artisan db:seed --class=PokemonSeeder
+npm install
+npm run build
+```
+
+## Lancer le projet
+
+### Mode développement complet (recommandé)
+
+```bash
+composer run dev
+```
+
+Cette commande lance en parallèle:
+
+- serveur Laravel (`php artisan serve`)
+- worker queue (`php artisan queue:listen`)
+- logs (`php artisan pail`)
+- Vite (`npm run dev`)
+
+Application disponible sur:
+
+- `http://127.0.0.1:8000`
+
+### Mode simple (2 terminaux)
+
+Terminal 1:
+
+```bash
+php artisan serve
+```
+
+Terminal 2:
+
+```bash
+npm run dev
+```
+
+## Données de test
+
+Le projet contient un dataset Pokémon JSON:
+
+- fichier: `app-laravel/database/seeders/pokemons.json`
+
+Seeder dédié:
+
+```bash
+php artisan db:seed --class=PokemonSeeder
+```
+
+Le `DatabaseSeeder` crée aussi un utilisateur de test:
+
+- email: `test@example.com`
+- mot de passe: `password`
+
+## Commandes utiles
+
+Depuis `app-laravel/`:
+
+```bash
+# Migrations
+php artisan migrate
+php artisan migrate:fresh
+
+# Seeder global + Pokémon
+php artisan db:seed
+php artisan db:seed --class=PokemonSeeder
+
+# Cache/config
+php artisan optimize:clear
+php artisan config:clear
+
+# Routes
+php artisan route:list
+
+# Tests
+php artisan test
+composer test
+
+# Build front
+npm run dev
+npm run build
+```
+
+## Structure utile
+
+```text
+.
+├── README.md
+└── app-laravel/
+    ├── app/
+    │   ├── Http/Controllers/
+    │   └── Models/
+    ├── database/
+    │   ├── migrations/
+    │   └── seeders/
+    ├── resources/views/
+    ├── routes/web.php
+    └── public/images/
+```
+
+## Règles métier principales
+
+- Un deck appartient à un seul utilisateur (`decks.user_id`)
+- Un utilisateur ne peut voir/modifier que ses propres decks
+- Relation many-to-many deck/pokémon avec quantité (`deck_has_pokemon.quantity`)
+- Limite métier en ajout rapide: maximum **15 Pokémon** par deck
+
+## Routes principales
+
+- `/` ou `/home`: liste + filtre des Pokémon
+- `/home/{pokemon}`: détail d'un Pokémon
+- `/register`, `/login`, `/logout`: authentification
+- `/decks`: gestion des decks (auth requis)
+- `/admin`: dashboard administration (auth requis)
+- `/admin/pokemons`: CRUD pokémons
+- `/admin/types`: CRUD types
+
